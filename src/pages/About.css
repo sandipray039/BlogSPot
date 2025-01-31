@@ -1,0 +1,241 @@
+.about-container {
+    width: 100%;
+    padding: 40px 20px;
+    background-color: #f0f4f8;
+  }
+  
+  .about-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .about-header h1 {
+    font-size: 3rem;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+  
+  .about-header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-top: 10px;
+  }
+  
+  .about-content {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-content h2 {
+    font-size: 2rem;
+    color: #34495e;
+    margin-bottom: 20px;
+  }
+  
+  .about-content p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .about-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .about-content li {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  /* Authors Section */
+  .authors {
+    margin-top: 50px;
+  }
+  
+  .author-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 20px;
+  }
+  
+  .author-list {
+    display: inline-block;
+    animation: scroll-right 50s linear infinite;
+  }
+  
+  .author-card {
+    text-align: center;
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .author-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .author-info h3 {
+    font-size: 1.3rem;
+    color: #34495e;
+  }
+  
+  .author-info p {
+    font-size: 1rem;
+    color: #7f8c8d;
+  }
+  
+  /* Scrolling Author Names */
+  .author-names {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .scrolling-authors {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+    padding: 10px 0;
+    animation: scroll-left 20s linear infinite;
+  }
+  
+  .author-name {
+    font-size: 1.5rem;
+    color: #3498db;
+    font-weight: bold;
+    padding: 0 30px;
+    gap: 15px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  
+  /* Keyframe animations for scrolling */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Media Queries for responsive design */
+  @media (max-width: 768px) {
+    .about-container {
+      padding: 40px 15px;
+    }
+  
+    .about-header h1 {
+      font-size: 2.5rem;
+    }
+  
+    .about-header p {
+      font-size: 1rem;
+    }
+  
+    .about-content h2 {
+      font-size: 1.5rem;
+    }
+  
+    .about-content p {
+      font-size: 1rem;
+    }
+  
+    .author-card {
+      width: 150px;
+      margin-right: 15px;
+    }
+  
+    .author-card img {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .author-info h3 {
+      font-size: 1.1rem;
+    }
+  
+    .author-info p {
+      font-size: 0.9rem;
+    }
+  
+    .scrolling-authors {
+      flex-direction: column;
+    }
+  
+    .author-name {
+      font-size: 1.2rem;
+      padding: 0 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-container {
+      padding: 30px 10px;
+    }
+  
+    .about-header h1 {
+      font-size: 2rem;
+    }
+  
+    .about-header p {
+      font-size: 0.9rem;
+    }
+  
+    .about-content h2 {
+      font-size: 1.3rem;
+    }
+  
+    .about-content p {
+      font-size: 0.9rem;
+    }
+  
+    .author-card {
+      width: 120px;
+      margin-right: 10px;
+    }
+  
+    .author-card img {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .author-info h3 {
+      font-size: 1rem;
+    }
+  
+    .author-info p {
+      font-size: 0.8rem;
+    }
+  
+    .scrolling-authors {
+      flex-direction: column;
+    }
+  
+    .author-name {
+      font-size: 1rem;
+      padding: 0 15px;
+    }
+  }
+  
