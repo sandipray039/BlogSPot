@@ -29,10 +29,7 @@ const Navbar = () => {
             blog<span className="text-orange-500">Spot</span>
           </a>
 
-          {/* Menu Icon (visible only on small & medium screens) */}
-          <button className="lg:hidden text-3xl" onClick={toggleMenu}>
-            <MdOutlineMenu />
-          </button>
+          
         </div>
 
         {/* Navigation Links (hidden on small screens, visible on large screens) */}
@@ -45,13 +42,14 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-
-        {/* Social Links & Login Button (hidden on small screens, visible on large screens) */}
-        <div className="hidden lg:flex items-center gap-2">
-          <a href="/" className="hover:bg-orange-500 text-2xl">
+      
+     
+ {/* Social Links & Login Button (visible on all screens) */}
+ <div className="flex items-center gap-2">
+          <a href="/" className="hover:bg-orange-500 text-2xl" title="Facebook">
             <FaFacebook />
           </a>
-          <a href="/" className="hover:bg-orange-500 text-2xl">
+          <a href="/" className="hover:bg-orange-500 text-2xl" title="Instagram">
             <FaInstagram />
           </a>
           <a
@@ -61,14 +59,17 @@ const Navbar = () => {
             Login
           </a>
         </div>
+        {/* Menu Icon (visible only on small & medium screens) */}
+        <button className=" ml-2 lg:hidden text-3xl" onClick={toggleMenu}>
+            <MdOutlineMenu />
+          </button>
       </div>
 
-      {/* Dropdown Menu for small screens */}
+      {/* Mobile Dropdown Menu */}
       <div
-        className={`lg:hidden ${
-          menu ? "block" : "hidden"
-        } bg-white absolute top-[100%] left-0 right-0 shadow-lg z-20`}
+        className={`lg:hidden ${menu ? "block" : "hidden"} bg-white absolute top-[100%] right-0 w-2/3 shadow-lg z-20`}
       >
+     
         <ul className="flex flex-col text-black py-3">
           {items.map((item) => (
             <li key={item.path} className="px-5 py-2 hover:bg-orange-500">
