@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./About.css";
 
 const About = () => {
@@ -58,6 +58,26 @@ const About = () => {
       bio: "Tech Enthusiast",
     },
   ];
+  const [posts,setPosts]=useState(null);
+
+
+//   useEffect(() => {
+//     fetch('https://localhost:7018/api/Posts/allposts')
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
+//             return response.json();
+//         })
+//         .then(data => setPosts(data))
+//         .catch(error => {
+//             console.error("Error fetching posts:", error);
+//             setError('Failed to fetch posts');
+//         });
+// }, []);
+// {
+//   console.log(posts);
+// }
 
   return (
     <div className="about-container">

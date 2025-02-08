@@ -10,6 +10,7 @@ import Services from "./pages/Services.jsx";
 import About from "./pages/About.jsx";
 import Login from "./pages/Login.jsx";
 import OneBlog from "./pages/OneBlog.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 
 const router=createBrowserRouter([
@@ -36,6 +37,9 @@ const router=createBrowserRouter([
       },
       {
         path:"/login", element:<Login/>
+      },
+      {
+        path:"/signup", element:<SignUp/>
       },
 
     ]

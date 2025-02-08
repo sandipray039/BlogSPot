@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import { loginUser } from "../authapi/authapi";
+import { registerUser } from "../authapi/authapi";  // Make sure you create this function in authapi.js
 
-const Login = () => {
+const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("User"); // Default role set to 'User'
   const [err, setErr] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the login logic here
+    // Handle the signup logic here
     try {
-      const response = await loginUser({ username, password });
-      
-      console.log(response); // Debugging: log the full response to check the format
-      
-      if (response && response.token) {
-        // Store the token in localStorage
-        localStorage.setItem("token", response.token);
-        alert("Login successful!");
+      const response = await registerUser({ username, password, role });
+      if (response && response.message) {
+        setSuccessMsg(response.message);
+        setErr(null); // Clear any previous errors
       } else {
-        setErr("Token not received. Please try again.");
+        setErr("Registration failed. Please try again.");
       }
     } catch (err) {
       console.error(err); // Debugging: log the error
@@ -30,7 +28,7 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-[80vh] bg-gray-50">
       <div className="w-full sm:w-3/4 md:w-1/2 lg:w-[40vw] bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Sign Up</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Username Input */}
@@ -65,36 +63,50 @@ const Login = () => {
             />
           </div>
 
-          {/* Forgot Password Link */}
-          <div className="text-right">
-            <a href="#" className="text-sm text-blue-500 hover:underline">
-              Forgot Password?
-            </a>
+          {/* Role Dropdown */}
+          <div>
+            <label htmlFor="role" className="block text-gray-700 text-sm font-semibold mb-2">
+              Role
+            </label>
+            <select
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="User">User</option>
+              <option value="Admin">Admin</option>
+            </select>
           </div>
 
-          {/* Login Button */}
+          {/* Sign Up Button */}
           <div>
             <button
               type="submit"
               className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
-              Login
+              Sign Up
             </button>
           </div>
 
-          {/* Display Error Message */}
+          {/* Display Success or Error Messages */}
           {err && (
-            <div className="text-red-500 text-lg mt-2">
+            <div className="text-red-500 text-2xl mt-2">
               <p>{err}</p>
             </div>
           )}
+          {successMsg && (
+            <div className="text-green-500 text-sm mt-2">
+              <p>{successMsg}</p>
+            </div>
+          )}
 
-          {/* Sign Up Link */}
+          {/* Login Link */}
           <div className="text-center">
             <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
-              <a href="/signup" className="text-blue-500 hover:underline">
-                Sign Up
+              Already have an account?{" "}
+              <a href="/login" className="text-blue-500 hover:underline">
+                Login
               </a>
             </p>
           </div>
@@ -104,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
