@@ -24,8 +24,8 @@ const Navbar = () => {
       {/* Navbar container */}
       <div className="flex justify-between items-center px-5 lg:px-10">
         {/* Logo & Menu (for small & medium screens) */}
-        <div className="flex items-center justify-between w-full lg:w-auto">
-          <a href="/" className="text-4xl font-bold text-white">
+        <div className="flex items-center justify-between w-full lg:w-auto ">
+          <a href="/" className="text-2xl  font-bold text-white">
             blog<span className="text-orange-500">Spot</span>
           </a>
 
@@ -46,17 +46,11 @@ const Navbar = () => {
      
  {/* Social Links & Login Button (visible on all screens) */}
  <div className="flex items-center gap-2">
-          <a href="/" className="hover:bg-orange-500 text-2xl" title="Facebook">
-            <FaFacebook />
-          </a>
-          <a href="/" className="hover:bg-orange-500 text-2xl" title="Instagram">
-            <FaInstagram />
-          </a>
           <a
             href="/login"
-            className="bg-orange-600 py-2 px-4 ml-3 rounded-md cursor-pointer "
+            className="bg-orange-600 py-2 px-2 ml-3  rounded-md cursor-pointer "
           >
-            Login/SignUP
+            Login
           </a>
         </div>
         {/* Menu Icon (visible only on small & medium screens) */}

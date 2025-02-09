@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";  // Corrected import
 import './index.css';
 import App from './App.jsx';
-import { Home } from "./pages/Home.jsx";
+import  Home  from "./pages/Blogs.jsx";
 import Blogs from "./pages/Blogs.jsx";
 import Contact from "./pages/Contact.jsx";
 import Services from "./pages/Services.jsx";
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/", element: <App />,
     children: [
-      { path: "/", element: <Blogs /> },
+      { path: "/", element: <Home/> },
       { path: "/blogs", element: <Blogs /> },
       { path: "/blogs/:id", element: <OneBlog /> },
       { path: "/contact", element: <Contact /> },
