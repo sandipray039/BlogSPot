@@ -54,7 +54,7 @@ const Navbar = () => {
           </a>
           <a
             href="/login"
-            className="bg-orange-600 py-2 px-4 ml-3 rounded-md cursor-pointer"
+            className="bg-orange-600 py-2 px-4 ml-3 rounded-md cursor-pointer "
           >
             Login/SignUP
           </a>
