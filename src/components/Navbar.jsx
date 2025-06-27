@@ -1,96 +1,143 @@
-import React, { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router";
+import React, { useState } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { MdOutlineMenu } from "react-icons/md";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
 import { useAuth } from "../Context/AuthContext";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
-  const {token,logout}=useAuth();
-  const navigate=useNavigate();
+  const { token, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setMenu(!menu);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   const items = [
     { path: "/", link: "Home" },
-    
     { path: "/about", link: "About" },
     { path: "/blogs", link: "Blogs" },
     { path: "/contact", link: "Contact" },
   ];
-  const handleLogout=()=>{
-    logout();
-    navigate("/login");
-
-  }
 
   return (
-    <header className="bg-black text-white w-full py-4 fixed top-0 left-0 right-0 z-10">
-      {/* Navbar container */}
+    <header className="bg-black text-white w-full py-4 fixed top-0 left-0 right-0 z-50">
+      {/* Navbar Container */}
       <div className="flex justify-between items-center px-5 lg:px-10">
-        {/* Logo & Menu (for small & medium screens) */}
-        <div className="flex items-center justify-between w-full lg:w-auto ">
-          <a href="/" className="text-2xl  font-bold text-white">
+        {/* Logo */}
+        <div className="flex items-center justify-between w-full lg:w-auto">
+          <a href="/" className="text-2xl font-bold text-white">
             Blog<span className="text-orange-500">Spot</span>
           </a>
-
-          
+          {/* Mobile Menu Icon */}
+          <button className="text-3xl lg:hidden" onClick={toggleMenu}>
+            <MdOutlineMenu />
+          </button>
         </div>
 
-        {/* Navigation Links (hidden on small screens, visible on large screens) */}
-        <ul className="hidden lg:flex gap-10 w-[50%] justify-center align-item-center text-white">
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex gap-10  justify-center items-center text-white">
           {items.map((item) => (
             <li key={item.path}>
-              <NavLink to={item.path} className="hover:text-orange-500">
-            <span style={{color:'white',fontWeight:600,fontSize:'2.5vh'}}>{item.link} </span> 
+              <NavLink
+                to={item.path}
+                className="hover:text-orange-500"
+              >
+                <span style={{ fontWeight: 600, fontSize: "2.5vh" }}>{item.link}</span>
               </NavLink>
             </li>
           ))}
         </ul>
-      
-     
- {/* Social Links & Login Button (visible on all screens) */}
-<div className="flex items-center gap-2">
+
+        {/* Right Section: Login / Logout / Dashboard */}
+        <div className="hidden lg:flex items-center gap-2">
           {token ? (
-            <button
-              onClick={handleLogout}
-              className="bg-red-600 py-2 px-4 ml-3 rounded-md cursor-pointer text-white"
-            >
-              Logout
-            </button>
+            <>
+              {location.pathname !== "/dashboard" && (
+                <NavLink
+                  to="/dashboard"
+                  className="bg-blue-600 py-2 px-4 ml-3 rounded-md text-white"
+                >
+                  Go to Dashboard
+                </NavLink>
+              )}
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 py-2 px-4 ml-3 rounded-md text-white"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <NavLink
               to="/login"
-              className="bg-orange-600 py-2 px-4 ml-3 rounded-md cursor-pointer text-white"
+              className="bg-orange-600 py-2 px-4 ml-3 rounded-md text-white"
             >
               Login
             </NavLink>
           )}
         </div>
-        {/* Menu Icon (visible only on small & medium screens) */}
-        <button className=" ml-2 lg:hidden text-3xl" onClick={toggleMenu}>
-            <MdOutlineMenu />
-          </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
-      <div
-        className={`lg:hidden ${menu ? "block" : "hidden"} bg-white absolute top-[100%] right-0 w-2/3 shadow-lg z-20`}
-      >
-      
-        <ul className="flex flex-col text-black py-3">
-          {items.map((item) => (
-            <li key={item.path} className="px-5 py-2 hover:bg-orange-500">
-              <NavLink to={item.path} className="block">
-              {item.link} 
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {menu && (
+        <div className="lg:hidden bg-white w-full shadow-lg z-40">
+          <ul className="flex flex-col text-black py-3 px-5">
+            {items.map((item) => (
+              <li key={item.path} className="py-2 border-b border-gray-300">
+                <NavLink
+                  to={item.path}
+                  className="block"
+                  onClick={() => setMenu(false)}
+                >
+                  {item.link}
+                </NavLink>
+              </li>
+            ))}
+            {token ? (
+              <>
+                {location.pathname !== "/dashboard" && (
+                  <li className="py-2 border-b border-gray-300">
+                    <NavLink
+                      to="/dashboard"
+                      className="block"
+                      onClick={() => setMenu(false)}
+                    >
+                      Go to Dashboard
+                    </NavLink>
+                  </li>
+                )}
+                <li className="py-2">
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setMenu(false);
+                    }}
+                    className="w-full text-left text-red-600"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li className="py-2">
+                <NavLink
+                  to="/login"
+                  className="block text-orange-600"
+                  onClick={() => setMenu(false)}
+                >
+                  Login
+                </NavLink>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
     </header>
   );
 };

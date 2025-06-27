@@ -11,8 +11,8 @@ interface Blog {
   author: string;
   authorphoto: string;
   tags: string[];
-  Published_date: string;
-  reading_time: string;
+  publishDate: string;
+  readingTime: string;
 }
 
 interface User {

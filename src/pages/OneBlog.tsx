@@ -9,7 +9,6 @@ const OneBlog: React.FC = () => {
   if (loading) return <div>Loading blog...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  // Find the blog by matching id (string comparison)
  const blog = blogs.find(blog => blog.id === Number(id));
 
   if (!blog) {
@@ -39,7 +38,7 @@ const OneBlog: React.FC = () => {
             className="w-10 h-10 rounded-full border border-gray-300"
           />
           <p>
-            <strong>{blog.author}</strong> • {blog.Published_date} • ⏳ {blog.reading_time}
+            <strong>{blog.author}</strong> • {blog.publishDate} • ⏳ {blog.readingTime}
           </p>
         </div>
 
