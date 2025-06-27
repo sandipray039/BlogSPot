@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./About.css";
 
 const About = () => {
   const authors = [
     {
-      name: "John Doe",
+      name: "Sandip Ray",
       image:
         "https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg",
-      bio: "Tech Enthusiast",
-    },
-    {
-      name: "John Doe",
-      image:
-        "https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg",
-      bio: "Tech Enthusiast",
+      bio: "Full Stack Developer",
     },
     {
       name: "Jane Smith",
@@ -28,63 +22,19 @@ const About = () => {
       bio: "Health & Wellness",
     },
     {
-      name: "John Doe",
-      image:
-        "https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg",
-      bio: "Tech Enthusiast",
-    },
-    {
       name: "Bob Martin",
       image:
         "https://m.media-amazon.com/images/M/MV5BYWI4YWIwMWUtNzA1YS00OGY1LWI3NmUtZDU3Yjg0NTZkNTQxXkEyXkFqcGc@._V1_.jpg",
       bio: "Business Guru",
     },
-    {
-      name: "John Doe",
-      image:
-        "https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg",
-      bio: "Tech Enthusiast",
-    },
-    {
-      name: "Alice Johnson",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOBVEWdPEBojYL5bv-XCZFlZwaTBCeUPSb9w&s",
-      bio: "Health & Wellness",
-    },
-    {
-      name: "John Doe",
-      image:
-        "https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg",
-      bio: "Tech Enthusiast",
-    },
   ];
-  const [posts,setPosts]=useState(null);
-
-
-//   useEffect(() => {
-//     fetch('https://localhost:7018/api/Posts/allposts')
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Network response was not ok');
-//             }
-//             return response.json();
-//         })
-//         .then(data => setPosts(data))
-//         .catch(error => {
-//             console.error("Error fetching posts:", error);
-//             setError('Failed to fetch posts');
-//         });
-// }, []);
-// {
-//   console.log(posts);
-// }
 
   return (
     <div className="about-container">
       <div className="about-header">
         <h1>About the Blog Project</h1>
         <p>
-          Welcome to our blog platform, where ideas are shared and explored.
+          A full-stack blog platform where admin users can publish and manage blog posts, and visitors can explore insightful content.
         </p>
       </div>
 
@@ -92,20 +42,18 @@ const About = () => {
         <section className="overview">
           <h2>Project Overview</h2>
           <p>
-            This project is a blog platform built using React.js and powered by
-            an external API. The goal is to provide users with the latest blog
-            content in an easy-to-navigate format. The app fetches data from an
-            API, displaying articles in various categories, including tech,
-            lifestyle, and more.
+            This blog platform is built using React.js for the frontend and ASP.NET Core Web API for the backend. It includes secure admin login, blog management (create, update, delete), and a public interface to browse posts. Blog data is managed in a SQL Server database, and uploaded images are stored and served through the backend using relative paths converted into full URLs.
           </p>
         </section>
 
         <section className="technologies">
           <h2>Technologies Used</h2>
           <ul>
-            <li>Frontend: React.js</li>
-            <li>API: External API for fetching blog posts</li>
-            <li>Styling: Tailwind CSS and custom CSS</li>
+            <li><strong>Frontend:</strong> React.js (TypeScript), React Context API, Axios, Bootstrap 5</li>
+            <li><strong>Backend:</strong> ASP.NET Core Web API with Repository-Service Pattern</li>
+            <li><strong>Database:</strong> SQL Server using Entity Framework Core</li>
+            <li><strong>Security:</strong> Password encryption using BCrypt</li>
+            <li><strong>Image Upload:</strong> Images uploaded from React and served from backend with path mapping</li>
           </ul>
         </section>
 
@@ -113,22 +61,8 @@ const About = () => {
           <h2>Featured Authors</h2>
           <div className="author-marquee">
             <div className="author-list scroll-duplicate">
-              {authors.map((author, index) => (
+              {authors.concat(authors).map((author, index) => (
                 <div key={index} className="author-card">
-                  <img
-                    src={author.image}
-                    alt={author.name}
-                    className="author-image"
-                  />
-                  <div className="author-info">
-                    <h3>{author.name}</h3>
-                    <p>{author.bio}</p>
-                  </div>
-                </div>
-              ))}
-              {/* Duplicate the author list for infinite scroll effect */}
-              {authors.map((author, index) => (
-                <div key={index + authors.length} className="author-card">
                   <img
                     src={author.image}
                     alt={author.name}

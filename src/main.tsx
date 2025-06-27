@@ -18,6 +18,7 @@ import { BlogProvider } from "./Context/BlogContext";
 import Home from "./pages/Home";
 import './App.css'
 import { AuthProvider } from "./Context/AuthContext";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <SignUp /> },
       { path: "/dashboard", element: <Dashboard /> },
+        { path: "/privacy-policy", element: <PrivacyPolicy/> },
     ]
   }
 ]);
